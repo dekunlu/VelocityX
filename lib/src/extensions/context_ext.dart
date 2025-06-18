@@ -15,6 +15,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart' show CupertinoTheme, CupertinoThemeData;
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 /// Extensions for general basic [Context]
@@ -128,11 +129,11 @@ extension VxContextExtensions on BuildContext {
 
   /// Divide the height proportionally by the given value
   double ratio(
-          {double dividedBy = 1,
-          double reducedByW = 0.0,
-          double reducedByH = 0.0}) =>
+      {double dividedBy = 1,
+        double reducedByW = 0.0,
+        double reducedByH = 0.0}) =>
       heightTransformer(dividedBy: dividedBy, reducedBy: reducedByH) /
-      widthTransformer(dividedBy: dividedBy, reducedBy: reducedByW);
+          widthTransformer(dividedBy: dividedBy, reducedBy: reducedByW);
 
   /// Returns the [FlutterView] that the provided `context` will render into.
   FlutterView get view => View.of(this);
@@ -162,51 +163,79 @@ extension VxContextExtensions on BuildContext {
   TextStyle? get captionStyle => Theme.of(this).textTheme.bodySmall;
 
   ColorScheme get colors => theme.colorScheme;
+
   TextStyle? get displayLarge => textTheme.displayLarge?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 57.sp,
+  );
+
   TextStyle? get displayMedium => textTheme.displayMedium?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 45.sp,
+  );
+
   TextStyle? get displaySmall => textTheme.displaySmall?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 36.sp,
+  );
+
   TextStyle? get headlineLarge => textTheme.headlineLarge?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 32.sp,
+  );
+
   TextStyle? get headlineMedium => textTheme.headlineMedium?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 28.sp,
+  );
+
   TextStyle? get headlineSmall => textTheme.headlineSmall?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 24.sp,
+  );
+
   TextStyle? get titleLarge => textTheme.titleLarge?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 22.sp,
+  );
+
   TextStyle? get titleMedium => textTheme.titleMedium?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 16.sp,
+  );
+
   TextStyle? get titleSmall => textTheme.titleSmall?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 14.sp,
+  );
+
   TextStyle? get labelLarge => textTheme.labelLarge?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 14.sp,
+  );
+
   TextStyle? get labelMedium => textTheme.labelMedium?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 12.sp,
+  );
+
   TextStyle? get labelSmall => textTheme.labelSmall?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 11.sp,
+  );
+
   TextStyle? get bodyLarge => textTheme.bodyLarge?.copyWith(
-        color: colors.onSurface,
-      );
-  TextStyle? get bodyMedium => textTheme.bodyMedium?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 16.sp,
+  );
+
+  TextStyle? get bodyMedium =>
+      textTheme.bodyMedium?.copyWith(color: colors.onSurface, fontSize: 14.sp);
+
   TextStyle? get bodySmall => textTheme.bodySmall?.copyWith(
-        color: colors.onSurface,
-      );
+    color: colors.onSurface,
+    fontSize: 12.sp,
+  );
 
   ///
   /// The foreground color for widgets (knobs, text, overscroll edge effect, etc).
@@ -303,26 +332,28 @@ extension VxContextExtensions on BuildContext {
 }
 
 Future<void> _nextPage(
-        {required BuildContext context,
-        required Widget page,
-        bool maintainState = true}) async =>
+    {required BuildContext context,
+      required Widget page,
+      bool maintainState = true}) async =>
     await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => page,
           maintainState: maintainState,
         ));
+
 Future<void> _nextReplacementPage(
-        {required BuildContext context,
-        required Widget page,
-        bool maintainState = true}) async =>
+    {required BuildContext context,
+      required Widget page,
+      bool maintainState = true}) async =>
     await Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => page,
           maintainState: maintainState,
         ));
+
 Future<void> _nextAndRemoveUntilPage(
-        {required BuildContext context, required Widget page}) async =>
+    {required BuildContext context, required Widget page}) async =>
     await Navigator.pushAndRemoveUntil(context,
         MaterialPageRoute(builder: (context) => page), (route) => false);
